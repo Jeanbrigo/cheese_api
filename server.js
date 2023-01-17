@@ -78,4 +78,14 @@ app.delete("/cheeses/:id", async (req, res) => {
     }
 })
 
+
+app.get("/cheeses/:id", async (req, res) => {
+    try{
+        res.json(await Cheese.findById(req.params.id))
+    }catch(error){
+        res.status(400).json(error)
+    }
+})
+
+
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`))
