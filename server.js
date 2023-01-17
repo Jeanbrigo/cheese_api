@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
     res.send("hello world")
 })
 
-app.get("/cheese", async (req, res) => {
+app.get("/cheeses", async (req, res) => {
     try{    
         res.json(await Cheese.find({}));
 
@@ -50,7 +50,7 @@ app.get("/cheese", async (req, res) => {
     }
 });
 
-app.post('/cheese', async (req, res) => {
+app.post('/cheeses', async (req, res) => {
     try{
         res.json(await Cheese.create(req.body))
     }catch(error){
@@ -58,7 +58,7 @@ app.post('/cheese', async (req, res) => {
     }
 })
 
-app.put("/cheese/:id", async (req, res) => {
+app.put("/cheeses/:id", async (req, res) => {
     try{
         res.json(
             await Cheese.findByIdAndUpdate(req.params.id, req.body, {new: true})
@@ -68,7 +68,7 @@ app.put("/cheese/:id", async (req, res) => {
     }
 })
 
-app.delete("/cheese/:id", async (req, res) => {
+app.delete("/cheeses/:id", async (req, res) => {
     try{
         res.json(
             await Cheese.findByIdAndRemove(req.params.id)
