@@ -19,13 +19,13 @@ mongoose.connection
     .on("close", () => console.log('You are disconnected from mongoose'))
     .on("error", (error) => console.log(error))
 
-const PeopleSchema = new mongoose.Schema({
+const CheeseSchema = new mongoose.Schema({
     name: String,
     image: String,
-    title: String,
+    type: String,
 })
 
-const People = mongoose.model("People", PeopleSchema);
+const Cheese = mongoose.model("Cheese", CheeseSchema);
 
 
 
@@ -41,37 +41,37 @@ app.get("/", (req, res) => {
     res.send("hello world")
 })
 
-app.get("/people", async (req, res) => {
+app.get("/cheese", async (req, res) => {
     try{    
-        res.json(await People.find({}));
+        res.json(await Cheese.find({}));
 
     }catch(error){
         res.status(400).json(error)
     }
 });
 
-app.post('/people', async (req, res) => {
+app.post('/cheese', async (req, res) => {
     try{
-        res.json(await People.create(req.body))
+        res.json(await Cheese.create(req.body))
     }catch(error){
         res.status(400).json(error)
     }
 })
 
-app.put("/people/:id", async (req, res) => {
+app.put("/cheese/:id", async (req, res) => {
     try{
         res.json(
-            await People.findByIdAndUpdate(req.params.id, req.body, {new: true})
+            await Cheese.findByIdAndUpdate(req.params.id, req.body, {new: true})
         )
     }catch(error){
         res.status(400).json(error)
     }
 })
 
-app.delete("/people/:id", async (req, res) => {
+app.delete("/cheese/:id", async (req, res) => {
     try{
         res.json(
-            await People.findByIdAndRemove(req.params.id)
+            await Cheese.findByIdAndRemove(req.params.id)
         )
     }catch(error){
         res.status(400).json(error)
